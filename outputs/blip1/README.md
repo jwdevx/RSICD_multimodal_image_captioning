@@ -1,3 +1,5 @@
+
+```txt
 Expect output in this folder:
     ├── best_model/
     │   │
@@ -13,6 +15,8 @@ Expect output in this folder:
     ├── training_log.txt (Console + file logs for each epoch: loss, warnings, generation samples, etc)
     ├── generated_captions_epoch*.json (1 .. n)
     ├── sample_logs_epoch1.txt (In-depth sample logging)
+```
+
 
 Pretraining the ability to
     - 📉 loss and accuracy curves

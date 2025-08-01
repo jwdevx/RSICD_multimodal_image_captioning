@@ -1,0 +1,415 @@
+{
+  "images": [
+    {
+      "id": 44,
+      "file_name": "square_146.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 44001,
+      "file_name": "square_146_v1.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 44002,
+      "file_name": "square_146_v2.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 45,
+      "file_name": "square_102.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 45001,
+      "file_name": "square_102_v1.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 45002,
+      "file_name": "square_102_v2.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 46,
+      "file_name": "sparseresidential_268.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 46001,
+      "file_name": "sparseresidential_268_v1.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 46002,
+      "file_name": "sparseresidential_268_v2.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 47,
+      "file_name": "sparseresidential_3.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 47001,
+      "file_name": "sparseresidential_3_v1.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 47002,
+      "file_name": "sparseresidential_3_v2.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 49,
+      "file_name": "airport_17.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 49001,
+      "file_name": "airport_17_v1.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 49002,
+      "file_name": "airport_17_v2.jpg",
+      "width": 384,
+      "height": 384,
+      "license": 1,
+      "date_captured": ""
+    }
+  ],
+  "annotations": [
+    {
+      "id": 0,
+      "image_id": 44,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 1,
+      "image_id": 44001,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 2,
+      "image_id": 44001,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 3,
+      "image_id": 44001,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 4,
+      "image_id": 44001,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 5,
+      "image_id": 44001,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 6,
+      "image_id": 44002,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 7,
+      "image_id": 44002,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 8,
+      "image_id": 44002,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 9,
+      "image_id": 44002,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 10,
+      "image_id": 44002,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 11,
+      "image_id": 45,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 12,
+      "image_id": 45001,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 13,
+      "image_id": 45001,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 14,
+      "image_id": 45001,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 15,
+      "image_id": 45001,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 16,
+      "image_id": 45001,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 17,
+      "image_id": 45002,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 18,
+      "image_id": 45002,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 19,
+      "image_id": 45002,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 20,
+      "image_id": 45002,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 21,
+      "image_id": 45002,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 22,
+      "image_id": 46,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 23,
+      "image_id": 46001,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 24,
+      "image_id": 46001,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 25,
+      "image_id": 46001,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 26,
+      "image_id": 46001,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 27,
+      "image_id": 46001,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 28,
+      "image_id": 46002,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 29,
+      "image_id": 46002,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 30,
+      "image_id": 46002,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 31,
+      "image_id": 46002,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 32,
+      "image_id": 46002,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 33,
+      "image_id": 47,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 34,
+      "image_id": 47001,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 35,
+      "image_id": 47001,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 36,
+      "image_id": 47001,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 37,
+      "image_id": 47001,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 38,
+      "image_id": 47001,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 39,
+      "image_id": 47002,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 40,
+      "image_id": 47002,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 41,
+      "image_id": 47002,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 42,
+      "image_id": 47002,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 43,
+      "image_id": 47002,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 44,
+      "image_id": 49,
+      "caption": "some airplance."
+    },
+    {
+      "id": 45,
+      "image_id": 49001,
+      "caption": "some airplance."
+    },
+    {
+      "id": 46,
+      "image_id": 49001,
+      "caption": "some airplance."
+    },
+    {
+      "id": 47,
+      "image_id": 49001,
+      "caption": "some airplance."
+    },
+    {
+      "id": 48,
+      "image_id": 49001,
+      "caption": "some airplance."
+    },
+    {
+      "id": 49,
+      "image_id": 49001,
+      "caption": "some airplance."
+    },
+    {
+      "id": 50,
+      "image_id": 49002,
+      "caption": "some airplance."
+    },
+    {
+      "id": 51,
+      "image_id": 49002,
+      "caption": "some airplance."
+    },
+    {
+      "id": 52,
+      "image_id": 49002,
+      "caption": "some airplance."
+    },
+    {
+      "id": 53,
+      "image_id": 49002,
+      "caption": "some airplance."
+    },
+    {
+      "id": 54,
+      "image_id": 49002,
+      "caption": "some airplance."
+    }
+  ],
+  "info": {
+    "description": "RSICD Augmented Training Set (Original + 2 Variants)",
+    "version": "1.0",
+    "year": 2025,
+    "contributor": "RSICD Dataset - Augmented",
+    "date_created": "1753958979.7062566"
+  },
+  "licenses": [
+    {
+      "id": 1,
+      "name": "Unknown License",
+      "url": ""
+    }
+  ]
+}

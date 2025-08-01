@@ -1,0 +1,11 @@
+torch>=2.0
+torchvision
+transformers>=4.37.0
+datasets>=2.15.0
+accelerate>=0.24.0
+evaluate>=0.4.0
+scikit-learn
+Pillow
+pycocotools
+matplotlib
+tqdm

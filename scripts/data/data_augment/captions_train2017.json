@@ -1,0 +1,98 @@
+{
+  "images": [
+    {
+      "id": 44,
+      "file_name": "square_146.jpg",
+      "width": 224,
+      "height": 224,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 45,
+      "file_name": "square_102.jpg",
+      "width": 224,
+      "height": 224,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 46,
+      "file_name": "sparseresidential_268.jpg",
+      "width": 224,
+      "height": 224,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 47,
+      "file_name": "sparseresidential_3.jpg",
+      "width": 224,
+      "height": 224,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 48,
+      "file_name": "airport_48.jpg",
+      "width": 224,
+      "height": 224,
+      "license": 1,
+      "date_captured": ""
+    },
+    {
+      "id": 49,
+      "file_name": "airport_17.jpg",
+      "width": 224,
+      "height": 224,
+      "license": 1,
+      "date_captured": ""
+    }
+  ],
+  "annotations": [
+    {
+      "id": 1,
+      "image_id": 44,
+      "caption": "the rectangular building cast a shaow on the field marked with 'gonzaga' and 'eagles'."
+    },
+    {
+      "id": 2,
+      "image_id": 45,
+      "caption": "a large green court and a tall building on the south."
+    },
+    {
+      "id": 3,
+      "image_id": 46,
+      "caption": "a playground with a football field in it is near several buildings."
+    },
+    {
+      "id": 4,
+      "image_id": 47,
+      "caption": "a playground is surrounded by several buildings."
+    },
+    {
+      "id": 5,
+      "image_id": 48,
+      "caption": "a playground with a football field in it is beside several buildings."
+    },
+    {
+      "id": 6,
+      "image_id": 49,
+      "caption": "some airplance."
+    }
+  ],
+  "licenses": [
+    {
+      "id": 1,
+      "name": "Unknown License",
+      "url": ""
+    }
+  ],
+  "info": {
+    "description": "Minimal RSICD",
+    "version": "1.0",
+    "year": 2025,
+    "contributor": "You",
+    "date_created": "2025-07-29"
+  }
+}

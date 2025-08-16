@@ -53,19 +53,6 @@ augmented_data_args = {
 # Define Augmentation Variants
 # ==============================================================================
 
-from torchvision import transforms
-from torchvision.transforms import functional as TF
-from torchvision.transforms import InterpolationMode
-import torch
-import random
-from PIL import ImageEnhance
-
-# ==============================================================================
-from torchvision.transforms.functional import (
-    adjust_brightness, adjust_contrast,
-    adjust_saturation, adjust_hue
-)
-
 class FixedColorTransform:
     def __init__(self, brightness=1.0, contrast=1.0, saturation=1.0, hue=0.0):
         self.brightness = brightness
@@ -80,31 +67,6 @@ class FixedColorTransform:
         img = adjust_saturation(img, self.saturation)
         img = adjust_hue(img, self.hue)
         return img
-
-# ==============================================================================
-# class DownUpSample:
-#     def __init__(self, low_res=96):
-#         self.low_res = low_res
-
-#     def __call__(self, img):
-#         return img.resize((self.low_res, self.low_res), Image.BILINEAR).resize((384, 384), Image.BILINEAR)
-
-# class GentleBlurBoost:
-#     def __call__(self, img):
-#         img = TF.adjust_brightness(img, 1.05)
-#         img = img.resize((256, 256), resample=Image.BILINEAR)
-#         img = img.resize((384, 384), resample=Image.BILINEAR)
-#         return img
-
-# class BrightBlurTransform:
-#     def __call__(self, img):
-#         # Slightly brighten
-#         img = TF.adjust_brightness(img, 1.1)
-#         # Slight Gaussian blur (via resize down and up)
-#         img = img.resize((192, 192), resample=Image.BILINEAR)
-#         img = img.resize((384, 384), resample=Image.BILINEAR)
-#         return img
-# ==============================================================================
 
 class AdjustSharpnessTransform:
     def __init__(self, sharpness_factor=2.0):
@@ -135,12 +97,12 @@ class AdjustLevelsTransform:
         img_tensor = torch.clamp(img_tensor, 0.0, 1.0)
         return TF.to_pil_image(img_tensor)
 
-# ==============================================================================
-# class Safe45Rotate:
-#     """Rotate 45° safely with expand=True and padded background fill."""
-#     def __call__(self, img):
-#         fill_color = tuple([int(c * 255) for c in TF.to_tensor(img).mean(dim=(1, 2))])
-#         return TF.rotate(img, angle=45, interpolation=TF.InterpolationMode.BILINEAR, expand=True, fill=fill_color)
+
+class Safe45Rotate:
+    """Rotate 45° safely with expand=True and padded background fill."""
+    def __call__(self, img):
+        fill_color = tuple([int(c * 255) for c in TF.to_tensor(img).mean(dim=(1, 2))])
+        return TF.rotate(img, angle=45, interpolation=TF.InterpolationMode.BILINEAR, expand=True, fill=fill_color)
 
 class AxialRotateTransform:
     """Rotates 90 or 270 degrees randomly (true axial rotation)."""
@@ -148,71 +110,47 @@ class AxialRotateTransform:
         angle = random.choice([90, 270])
         return TF.rotate(img, angle, interpolation=InterpolationMode.BILINEAR)
 
-# ==============================================================================
+
 
 #option 1
 variant1_transform = transforms.Compose([
     AxialRotateTransform(),
     FixedColorTransform(brightness=1.2, contrast=1.0, saturation=1.5, hue=0.0),
-    # AdjustSharpnessTransform(sharpness_factor=3.5),
     RandomSharpness(min_factor=1.0, max_factor=2.0),
     AdjustLevelsTransform(black_level=0/255, white_level=240/255),
     transforms.Resize((384, 384)),
     transforms.ToTensor()
 ])
 
-#option 2
-# variant1_transform = transforms.Compose([
-#     transforms.RandomRotation(degrees=[-30, 30]),                     # simulate different satellite angles
-#     transforms.RandomResizedCrop(384, scale=(0.85, 1.0), ratio=(1.0, 1.0)),  # vary scale slightly, preserve aspect
-#     transforms.RandomHorizontalFlip(p=0.5),                           # rotation invariance
-#     transforms.RandomVerticalFlip(p=0.3),                             # adds reflection-style diversity
-#     transforms.Resize(384),
-#     transforms.ToTensor()
-# ])
-
-# ==============================================================================
-# V2
-# ==============================================================================
-
 variant2_transform = transforms.Compose([
     transforms.RandomHorizontalFlip(p=1.0),
     transforms.RandomResizedCrop(384, scale=(0.95, 1.0), ratio=(0.95, 1.05)),
-    FixedColorTransform(brightness=1.1, contrast=1.2, saturation=1.1, hue=0.05),
+    FixedColorTransform(brightness=1.0, contrast=1.2, saturation=1.1, hue=0.05),
     AdjustSharpnessTransform(sharpness_factor=3.5),
-    AdjustLevelsTransform(black_level=10/255, white_level=200/255),
+    AdjustLevelsTransform(black_level=10/255, white_level=210/255),
     transforms.Resize(384),
     transforms.ToTensor()
 ])
 
-#option 2
-# variant2_transform = transforms.Compose([
-#     transforms.ColorJitter(brightness=0.2, contrast=0.3, saturation=0.2, hue=0.05),  # light tone shift
-#     transforms.GaussianBlur(kernel_size=3, sigma=(0.2, 1.0)),                       # slight blur = emulates haze/cloud
-#     transforms.RandomApply([transforms.RandomAdjustSharpness(sharpness_factor=2)], p=0.3),  # add sensor contrast variety
-#     transforms.Resize(384),
-#     transforms.ToTensor()
-# ])
 
-# ==============================================================================
 # Helper Functions
-# ==============================================================================
+
 
 def create_directories():
     """Create necessary directories for augmented dataset"""
     augmented_dir = Path(augmented_data_args['image_dir'])
     augmented_dir.mkdir(parents=True, exist_ok=True)
-    print(f"✓ Created directory: {augmented_dir}")
+    print(f" Created directory: {augmented_dir}")
 
     # Create parent directory for JSON
     json_dir = Path(augmented_data_args['train_json']).parent
     json_dir.mkdir(parents=True, exist_ok=True)
-    print(f"✓ Created directory: {json_dir}")
+    print(f" Created directory: {json_dir}")
 
 
-# ==============================================================================
+
 # Caption Redordering based on TFIDF
-# ==============================================================================
+
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
@@ -238,6 +176,7 @@ def deduplicate_and_pad_captions(captions, target_count=5):
         rarity_scores = tfidf_matrix.sum(axis=1).A1  # Sum of TF-IDF scores per sentence
         best_idx = int(np.argmax(rarity_scores))
         best_caption = unique_captions[best_idx]
+
         # Move best caption to the front
         unique_captions.pop(best_idx)
         unique_captions = [best_caption] + unique_captions
@@ -248,9 +187,9 @@ def deduplicate_and_pad_captions(captions, target_count=5):
 
     return unique_captions[:target_count]
 
-# ==============================================================================
+
 # Create Original + 2 Variants
-# ==============================================================================
+
 
 def process_and_save_image(image_path, output_path, transform):
     """Apply transformation and save image"""
@@ -288,8 +227,8 @@ def generate_augmented_dataset():
     with open(original_data_args['train_json'], 'r') as f:
         original_data = json.load(f)
 
-    print(f"✓ Loaded {len(original_data['images'])} images")
-    print(f"✓ Loaded {len(original_data['annotations'])} annotations")
+    print(f" Loaded {len(original_data['images'])} images")
+    print(f" Loaded {len(original_data['annotations'])} annotations")
 
     # Initialize new augmented data structure
     augmented_data = {
@@ -373,7 +312,7 @@ def generate_augmented_dataset():
             print(f"Error copying original image {original_filename}: {e}")
             continue
 
-        # === 2. Generate Variant 1 ===
+        #2. Generate Variant 1
         variant1_filename = original_filename.rsplit('.', 1)[0] + '_v1.' + original_filename.rsplit('.', 1)[1]
         variant1_output_path = Path(augmented_data_args['image_dir']) / variant1_filename
         variant1_image_id = int(str(image_id) + "001")
@@ -430,25 +369,69 @@ def generate_augmented_dataset():
     with open(augmented_data_args['train_json'], 'w') as f:
         json.dump(augmented_data, f, indent=2)
 
+    # ===== MINIMAL FIX: Copy validation and test data =====
+    print("\nCopying validation and test data...")
+
+    # Copy validation JSON
+    val_json_src = original_data_args['train_json'].parent / 'captions_val2017.json'
+    val_json_dst = Path(augmented_data_args['train_json']).parent / 'captions_val2017.json'
+    if val_json_src.exists():
+        shutil.copy2(val_json_src, val_json_dst)
+        print(f" Copied validation JSON")
+
+        # Copy validation images
+        with open(val_json_src, 'r') as f:
+            val_data = json.load(f)
+
+        val_copied = 0
+        for img_data in val_data['images']:
+            src = Path(original_data_args['image_dir']) / img_data['file_name']
+            dst = Path(augmented_data_args['image_dir']) / img_data['file_name']
+            if src.exists() and not dst.exists():
+                shutil.copy2(src, dst)
+                val_copied += 1
+        print(f" Copied {val_copied} validation images")
+
+    # Copy test JSON
+    test_json_src = original_data_args['train_json'].parent / 'captions_test2017.json'
+    test_json_dst = Path(augmented_data_args['train_json']).parent / 'captions_test2017.json'
+    if test_json_src.exists():
+        shutil.copy2(test_json_src, test_json_dst)
+        print(f" Copied test JSON")
+
+        # Copy test images
+        with open(test_json_src, 'r') as f:
+            test_data = json.load(f)
+
+        test_copied = 0
+        for img_data in test_data['images']:
+            src = Path(original_data_args['image_dir']) / img_data['file_name']
+            dst = Path(augmented_data_args['image_dir']) / img_data['file_name']
+            if src.exists() and not dst.exists():
+                shutil.copy2(src, dst)
+                test_copied += 1
+        print(f" Copied {test_copied} test images")
+    # ===== END OF FIX =====
+
     # Print summary
     print("\n" + "="*60)
     print("AUGMENTATION COMPLETE!")
     print("="*60)
-    print(f"✓ Total images created: {len(augmented_data['images'])}")
+    print(f" Total images created: {len(augmented_data['images'])}")
     print(f"  - Original images: {processed_images}")
     print(f"  - Variant 1 images: ~{processed_images}")
     print(f"  - Variant 2 images: ~{processed_images}")
-    print(f"✓ Total annotations: {len(augmented_data['annotations'])}")
-    print(f"✓ Expected image-caption pairs: {len(augmented_data['images']) * 5}")
-    print(f"✓ Images saved to: {augmented_data_args['image_dir']}")
-    print(f"✓ JSON saved to: {augmented_data_args['train_json']}")
+    print(f" Total annotations: {len(augmented_data['annotations'])}")
+    print(f" Expected image-caption pairs: {len(augmented_data['images']) * 5}")
+    print(f" Images saved to: {augmented_data_args['image_dir']}")
+    print(f" JSON saved to: {augmented_data_args['train_json']}")
 
     # Verify counts
     unique_images = len(set(img['file_name'] for img in augmented_data['images']))
-    print(f"\n✓ Unique image files: {unique_images}")
+    print(f"\n Unique image files: {unique_images}")
 
     # Show sample of de-duplicated captions
-    print("\n📝 Sample caption de-duplication:")
+    print("\n Sample caption de-duplication:")
     sample_img_id = original_data['images'][0]['id'] if original_data['images'] else None
     if sample_img_id and sample_img_id in image_id_to_captions:
         original_caps = image_id_to_captions[sample_img_id]
@@ -456,24 +439,22 @@ def generate_augmented_dataset():
         print(f"Original ({len(original_caps)}): {original_caps}")
         print(f"De-duplicated & padded (5): {dedup_caps}")
 
-# ==============================================================================
 # Main Execution
-# ==============================================================================
 
-# if __name__ == "__main__":
 
-# Check if original data exists
-if not Path(original_data_args['train_json']).exists():
-    print(f"❌ Error: Original training JSON not found at {original_data_args['train_json']}")
-    print("Please ensure your data is in the correct location.")
-elif not Path(original_data_args['image_dir']).exists():
-    print(f"❌ Error: Original image directory not found at {original_data_args['image_dir']}")
-    print("Please ensure your images are in the correct location.")
-else:
-    # Run augmentation
-    generate_augmented_dataset()
+if __name__ == "__main__":
+    # Check if original data exists
+    if not Path(original_data_args['train_json']).exists():
+        print(f" Error: Original training JSON not found at {original_data_args['train_json']}")
+        print("Please ensure your data is in the correct location.")
+    elif not Path(original_data_args['image_dir']).exists():
+        print(f" Error: Original image directory not found at {original_data_args['image_dir']}")
+        print("Please ensure your images are in the correct location.")
+    else:
+        # Run augmentation
+        generate_augmented_dataset()
 
-    print("\n🎉 Augmentation complete! You can now use the augmented dataset for training.")
-    print("\nTo use in your training script, update your paths to:")
-    print(f"  train_json: '{augmented_data_args['train_json']}'")
-    print(f"  image_dir: '{augmented_data_args['image_dir']}'")
+        print("\n Augmentation complete! You can now use the augmented dataset for training.")
+        print("\nTo use in your training script, update your paths to:")
+        print(f"  train_json: '{augmented_data_args['train_json']}'")
+        print(f"  image_dir: '{augmented_data_args['image_dir']}'")
